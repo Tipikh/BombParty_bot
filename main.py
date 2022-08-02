@@ -9,11 +9,11 @@ import time
 import re
 
 def main():
-    name_of_bot = "JKLM_bot_test"
+    name_of_bot = inputStr(prompt="Type a name for the bot (or leave blank) and press Enter:", default="BombParty_bot")
 
     # Ask for the room link with input validation
     while True:
-        game_link = inputStr(prompt='Copie du lien de la room : ', default="BombParty_bot").strip()
+        game_link = inputStr(prompt='Paste the link of the room and press Enter:').strip()
         link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
         if link_pattern.match(game_link):
             break
@@ -21,13 +21,11 @@ def main():
             print("This link is not valid")
             continue
 
-
-
     with open('fr_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
 
     # Setup Driver
-    chromedriver_path = "chromedriver.exe"
+
     s = Service(ChromeDriverManager().install())
     options = Options()
     options.headless = True
@@ -51,7 +49,7 @@ def main():
     join_button.send_keys(Keys.ENTER)
 
     while True:
-        round_ = driver.find_element(By.CLASS_NAME, 'round')  # this element is visible
+        round_ = driver.find_element(By.CLASS_NAME, 'round')
         if round_.is_displayed():
 
             while 1:  # Run until the game is over
