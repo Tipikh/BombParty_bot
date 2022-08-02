@@ -1,0 +1,2 @@
+selenium~=4.3.0
+PyInputPlus~=0.2.12
