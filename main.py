@@ -6,11 +6,22 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from pyinputplus import inputStr
 import time
-
+import re
 
 def main():
     name_of_bot = "JKLM_bot_test"
-    game_link = inputStr(prompt='Copie du lien de la room : ', default="BombParty_bot").strip()
+
+    # Ask for the room link with input validation
+    while True:
+        game_link = inputStr(prompt='Copie du lien de la room : ', default="BombParty_bot").strip()
+        link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
+        if link_pattern.match(game_link):
+            break
+        else:
+            print("This link is not valid")
+            continue
+
+
 
     with open('fr_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
