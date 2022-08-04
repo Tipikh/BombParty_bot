@@ -1,2 +1,4 @@
 selenium~=4.3.0
 PyInputPlus~=0.2.12
+webdriver-manager~=3.8.3
+customtkinter~=4.5.10

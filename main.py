@@ -9,6 +9,7 @@ import time
 import re
 
 def main():
+
     name_of_bot = inputStr(prompt="Type a name for the bot (or leave blank) and press Enter:", default="BombParty_bot")
 
     # Ask for the room link with input validation
@@ -25,7 +26,6 @@ def main():
         my_dict = [i.strip() for i in file]
 
     # Setup Driver
-
     s = Service(ChromeDriverManager().install())
     options = Options()
     options.headless = True
