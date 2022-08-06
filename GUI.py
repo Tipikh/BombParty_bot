@@ -1,5 +1,6 @@
 from tkinter import StringVar, IntVar
 from customtkinter import CTk, CTkLabel, CTkEntry, CTkRadioButton, CTkButton
+import time
 
 
 class BombPartyGUI(CTk):
@@ -8,21 +9,23 @@ class BombPartyGUI(CTk):
         CTk.__init__(self, *args, **kwargs)
         self.geometry("300x500")
         self.diff_var = IntVar()
+        self.diff_var.set(1)
         self.language_var = IntVar()
+        self.language_var.set(0)
 
         # Title Label
         self.title_label = CTkLabel(text="Bomb Party Bot", text_font=("Roboto Medium", 16))
         self.title_label.grid(row=1, column=0, columnspan=4, pady=10, padx=0)
 
         # Bot Name
-        self.bot_name_label = CTkLabel(text="Bot's name: ", text_font=("Roboto Medium", -16))
-        self.bot_name_label.grid(row=2, column=0, columnspan=2, pady=10, padx=0)
-        self.bot_name_entry = CTkEntry(width=140, placeholder_text="BombParty_bot")
+        self.bot_name_label = CTkLabel(self, text="Bot's name: ", text_font=("Roboto Medium", -16))
+        self.bot_name_label.grid(row=2, column=0, columnspan=2, pady=0, padx=0)
+        self.bot_name_entry = CTkEntry(self, width=140, placeholder_text="BombParty_bot")
         self.bot_name_entry.grid(row=2, column=2, columnspan=2, pady=10, padx=0)
 
         # Room link
         self.room_link_label = CTkLabel(text="Room's link: ", text_font=("Roboto Medium", -16))
-        self.room_link_label.grid(row=3, column=0, columnspan=2, pady=10, padx=0)
+        self.room_link_label.grid(row=3, column=0, columnspan=2, pady=0, padx=0)
         self.room_link_entry = CTkEntry(width=140, placeholder_text="https://jklm.fun/XXXX")
         self.room_link_entry.grid(row=3, column=2, columnspan=2, pady=10, padx=0)
 
@@ -69,14 +72,20 @@ class BombPartyGUI(CTk):
         self.french_button = CTkRadioButton(variable=self.language_var, value=1, text="")
         self.french_button.grid(row=9, column=2, columnspan=2, pady=10, padx=(10, 0))
 
-
         # Start Button
-
-        self.start_button = CTkButton(text="Start", command=None)
+        self.start_button = CTkButton(text="Start", command=self.get_test)
         self.start_button.grid(row=10, column=0, columnspan=4, pady=10, padx=10)
-
         self.grid()
         self.mainloop()
 
+    def start(self):
+        global bot_name
+        global link_room
+        global difficulty
+        global language
 
-test = BombPartyGUI()
+        link_room = CTkEntry.get(self.room_link_entry)
+        bot_name = CTkEntry.get(self.bot_name_entry)
+        difficulty = self.diff_var.get()
+        language = self.language_var.get()
+        self.destroy()
