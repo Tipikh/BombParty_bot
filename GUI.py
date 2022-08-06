@@ -10,6 +10,9 @@ class BombPartyGUI(CTk):
     def __init__(self, *args, **kwargs):
         CTk.__init__(self, *args, **kwargs)
         self.geometry("300x500")
+        self.bot_name = StringVar()
+        self.room_link = StringVar()
+
         self.diff_var = IntVar()
         self.diff_var.set(1)
         self.language_var = IntVar()
@@ -75,26 +78,22 @@ class BombPartyGUI(CTk):
         self.french_button.grid(row=9, column=2, columnspan=2, pady=10, padx=(10, 0))
 
         # Start Button
-        self.start_button = CTkButton(text="Start", command=self.get_test)
+        self.start_button = CTkButton(text="Start", command=self.start)
         self.start_button.grid(row=10, column=0, columnspan=4, pady=10, padx=10)
         self.grid()
         self.mainloop()
 
     def start(self):
-        global bot_name
-        global link_room
-        global difficulty
-        global language
 
-        link_room = CTkEntry.get(self.room_link_entry)
-        bot_name = CTkEntry.get(self.bot_name_entry)
-        difficulty = self.diff_var.get()
-        language = self.language_var.get()
-
+        self.link_room = CTkEntry.get(self.room_link_entry)
+        self.bot_name = CTkEntry.get(self.bot_name_entry)
         link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
 
-        if link_pattern.match(link_room):
+        if link_pattern.match(self.link_room):
             self.destroy()
         else:
             messagebox.showerror(title='Error', message=f"Please enter a valid Room Link")
 
+# test = BombPartyGUI()
+# test.mainloop()
+# print(link_room, bot_name, difficulty, language)

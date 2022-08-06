@@ -7,12 +7,14 @@ from selenium.webdriver.common.keys import Keys
 from pyinputplus import inputStr
 import time
 import re
+from GUI import BombPartyGUI
 
+global link_room
+global bot_name
 def main():
+    game_gui = BombPartyGUI()
 
-
-
-    # Ask for the room link with input validation
+    game_gui.mainloop()
 
     with open('fr_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
@@ -25,14 +27,14 @@ def main():
     # Initialize Driver
     driver = webdriver.Chrome(service=s, options=options)
 
-    driver.get(room_link)
+    driver.get(game_gui.link_room)
     driver.implicitly_wait(5)
 
     time.sleep(1)
 
     # Log In
     nickname = driver.find_element(By.CSS_SELECTOR, ".setNickname input")
-    nickname.send_keys(name_of_bot)
+    nickname.send_keys(game_gui.bot_name)
     nickname.send_keys(Keys.ENTER)
 
     # Join room
