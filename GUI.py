@@ -12,6 +12,8 @@ class BombPartyGUI(CTk):
         self.geometry("300x500")
         self.bot_name = StringVar()
         self.room_link = StringVar()
+        self.language = IntVar()
+        self.difficulty = IntVar()
 
         self.diff_var = IntVar()
         self.diff_var.set(1)
@@ -85,11 +87,13 @@ class BombPartyGUI(CTk):
 
     def start(self):
 
-        self.link_room = CTkEntry.get(self.room_link_entry)
+        self.room_link = CTkEntry.get(self.room_link_entry)
         self.bot_name = CTkEntry.get(self.bot_name_entry)
+        self.difficulty = self.diff_var.get()
+        self.language = self.language_var.get()
         link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
 
-        if link_pattern.match(self.link_room):
+        if link_pattern.match(self.room_link):
             self.destroy()
         else:
             messagebox.showerror(title='Error', message=f"Please enter a valid Room Link")

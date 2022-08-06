@@ -8,9 +8,31 @@ from pyinputplus import inputStr
 import time
 import re
 from GUI import BombPartyGUI
+import random
 
-global link_room
-global bot_name
+def get_bot_delay(difficulty_lvl : int):
+    """
+    A function that get a lvl of difficulty (int from 0 to 3 included)
+    as input and return an delay in ms that the bot will have to
+    wait before giving is answer"""
+
+    if difficulty_lvl == 0:
+        delay = random.uniform(3, 8)
+        return delay
+
+    elif difficulty_lvl == 1:
+        delay = random.uniform(1, 4)
+        return delay
+
+    elif difficulty_lvl == 2:
+        delay = random.uniform(0.2, 2)
+        return delay
+    else:
+        return 0
+
+
+
+
 def main():
     game_gui = BombPartyGUI()
 
@@ -27,7 +49,7 @@ def main():
     # Initialize Driver
     driver = webdriver.Chrome(service=s, options=options)
 
-    driver.get(game_gui.link_room)
+    driver.get(game_gui.room_link)
     driver.implicitly_wait(5)
 
     time.sleep(1)
@@ -60,6 +82,9 @@ def main():
                     # Look in the dict for a word with the given syllable
                     for word in my_dict:
                         if syllabe in word:
+                            print(game_gui.difficulty)
+                            print(get_bot_delay(game_gui.difficulty))
+                            time.sleep(get_bot_delay(game_gui.difficulty))
                             # Type and send the word
                             answer_input = driver.find_element(By.CSS_SELECTOR, '.selfTurn input')
                             answer_input.send_keys(word)
