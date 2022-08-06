@@ -10,17 +10,9 @@ import re
 
 def main():
 
-    name_of_bot = inputStr(prompt="Type a name for the bot (or leave blank) and press Enter:", default="BombParty_bot")
+
 
     # Ask for the room link with input validation
-    while True:
-        game_link = inputStr(prompt='Paste the link of the room and press Enter:').strip()
-        link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
-        if link_pattern.match(game_link):
-            break
-        else:
-            print("This link is not valid")
-            continue
 
     with open('fr_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
@@ -33,7 +25,7 @@ def main():
     # Initialize Driver
     driver = webdriver.Chrome(service=s, options=options)
 
-    driver.get(game_link)
+    driver.get(room_link)
     driver.implicitly_wait(5)
 
     time.sleep(1)

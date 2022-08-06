@@ -1,6 +1,8 @@
 from tkinter import StringVar, IntVar
 from customtkinter import CTk, CTkLabel, CTkEntry, CTkRadioButton, CTkButton
 import time
+import re
+from tkinter import messagebox
 
 
 class BombPartyGUI(CTk):
@@ -88,4 +90,11 @@ class BombPartyGUI(CTk):
         bot_name = CTkEntry.get(self.bot_name_entry)
         difficulty = self.diff_var.get()
         language = self.language_var.get()
-        self.destroy()
+
+        link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")
+
+        if link_pattern.match(link_room):
+            self.destroy()
+        else:
+            messagebox.showerror(title='Error', message=f"Please enter a valid Room Link")
+
