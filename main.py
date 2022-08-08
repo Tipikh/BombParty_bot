@@ -38,7 +38,8 @@ def main():
 
     game_gui.mainloop()
 
-    with open('fr_dict.txt', 'r', encoding='UTF-8') as file:
+
+    with open(f'{game_gui.language}_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
 
     # Setup Driver
@@ -82,8 +83,6 @@ def main():
                     # Look in the dict for a word with the given syllable
                     for word in my_dict:
                         if syllabe in word:
-                            print(game_gui.difficulty)
-                            print(get_bot_delay(game_gui.difficulty))
                             time.sleep(get_bot_delay(game_gui.difficulty))
                             # Type and send the word
                             answer_input = driver.find_element(By.CSS_SELECTOR, '.selfTurn input')

@@ -12,13 +12,13 @@ class BombPartyGUI(CTk):
         self.geometry("300x500")
         self.bot_name = StringVar()
         self.room_link = StringVar()
-        self.language = IntVar()
+        self.language = StringVar()
         self.difficulty = IntVar()
 
         self.diff_var = IntVar()
         self.diff_var.set(1)
-        self.language_var = IntVar()
-        self.language_var.set(0)
+        self.language_var = StringVar()
+        self.language_var.set("en")
 
         # Title Label
         self.title_label = CTkLabel(text="Bomb Party Bot", text_font=("Roboto Medium", 16))
@@ -70,13 +70,13 @@ class BombPartyGUI(CTk):
         # English
         self.english_label = CTkLabel(self, text="English", text_font=("Roboto Medium", 12), width=10)
         self.english_label.grid(row=8, column=0, columnspan=2, pady=(10, 0), padx=0)
-        self.english_button = CTkRadioButton(variable=self.language_var, value=0, text="")
+        self.english_button = CTkRadioButton(variable=self.language_var, value="en", text="")
         self.english_button.grid(row=9, column=0, columnspan=2, pady=10, padx=(10, 0))
 
         # French
         self.french_label = CTkLabel(self, text="French", text_font=("Roboto Medium", 12), width=10)
         self.french_label.grid(row=8, column=2, columnspan=2, pady=(10, 0), padx=0)
-        self.french_button = CTkRadioButton(variable=self.language_var, value=1, text="")
+        self.french_button = CTkRadioButton(variable=self.language_var, value="fr", text="")
         self.french_button.grid(row=9, column=2, columnspan=2, pady=10, padx=(10, 0))
 
         # Start Button
