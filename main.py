@@ -10,7 +10,8 @@ import re
 from GUI import BombPartyGUI
 import random
 
-def get_bot_delay(difficulty_lvl : int):
+
+def get_bot_delay(difficulty_lvl: int):
     """
     A function that get a lvl of difficulty (int from 0 to 3 included)
     as input and return an delay in ms that the bot will have to
@@ -31,13 +32,9 @@ def get_bot_delay(difficulty_lvl : int):
         return 0
 
 
-
-
 def main():
     game_gui = BombPartyGUI()
-
     game_gui.mainloop()
-
 
     with open(f'{game_gui.language}_dict.txt', 'r', encoding='UTF-8') as file:
         my_dict = [i.strip() for i in file]
@@ -98,6 +95,7 @@ def main():
                 if round_.is_displayed():
                     pass
                 else:
+                    print("La partie est finie")
                     break
 
 
