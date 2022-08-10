@@ -4,9 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
-from pyinputplus import inputStr
 import time
-import re
 from GUI import BombPartyGUI
 import random
 
@@ -63,13 +61,13 @@ def main():
     join_button.send_keys(Keys.ENTER)
 
     while True:
+        # Check if a game is currently on
         round_ = driver.find_element(By.CLASS_NAME, 'round')
         if round_.is_displayed():
 
-            while 1:  # Run until the game is over
-
+            while True:  # Run until the game is over
                 self_turn = driver.find_element(By.CLASS_NAME, 'selfTurn')
-                player_turn = driver.find_element(By.CLASS_NAME, "player")
+
 
                 # Check if it is bot's turn to play
                 if self_turn.is_displayed():
@@ -87,7 +85,7 @@ def main():
                             answer_input.send_keys(Keys.ENTER)
                             # Remove the word from the dict
                             my_dict.remove(word)
-                            time.sleep(0.5)
+                            time.sleep(0.2)
                             break
                     pass
 
@@ -96,7 +94,11 @@ def main():
                     pass
                 else:
                     print("La partie est finie")
+                    time.sleep(5)
+                    join_button = driver.find_element(By.CSS_SELECTOR, '.join button')
+                    join_button.send_keys(Keys.ENTER)
                     break
+
 
 
         else:
