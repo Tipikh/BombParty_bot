@@ -9,7 +9,7 @@ class BombPartyGUI(CTk):
 
     def __init__(self, *args, **kwargs):
         CTk.__init__(self, *args, **kwargs)
-        self.geometry("300x500")
+        self.geometry("290x500")
         self.bot_name = StringVar()
         self.room_link = StringVar()
         self.language = StringVar()
@@ -28,13 +28,13 @@ class BombPartyGUI(CTk):
         self.bot_name_label = CTkLabel(self, text="Bot's name: ", text_font=("Roboto Medium", -16))
         self.bot_name_label.grid(row=2, column=0, columnspan=2, pady=0, padx=0)
         self.bot_name_entry = CTkEntry(self, width=140, placeholder_text="BombParty_bot")
-        self.bot_name_entry.grid(row=2, column=2, columnspan=2, pady=10, padx=0)
+        self.bot_name_entry.grid(row=2, column=2, columnspan=2, pady=10, padx=(0, 0))
 
         # Room link
         self.room_link_label = CTkLabel(text="Room's link: ", text_font=("Roboto Medium", -16))
         self.room_link_label.grid(row=3, column=0, columnspan=2, pady=0, padx=0)
         self.room_link_entry = CTkEntry(width=140, placeholder_text="https://jklm.fun/XXXX")
-        self.room_link_entry.grid(row=3, column=2, columnspan=2, pady=10, padx=0)
+        self.room_link_entry.grid(row=3, column=2, columnspan=2, pady=10, padx=(0, 0))
 
         # Chose difficulty
         self.chose_diff_label = CTkLabel(text="Chose difficulty: ", text_font=("Roboto Medium", 14))
@@ -89,6 +89,8 @@ class BombPartyGUI(CTk):
 
         self.room_link = CTkEntry.get(self.room_link_entry)
         self.bot_name = CTkEntry.get(self.bot_name_entry)
+        if len(self.bot_name) < 1:
+            self.bot_name = "BombParty_bot"
         self.difficulty = self.diff_var.get()
         self.language = self.language_var.get()
         link_pattern = re.compile("https://jklm.fun/[A-Z]{4}$")

@@ -30,7 +30,7 @@ def get_bot_delay(difficulty_lvl: int):
         return 0
 
 
-def main():
+def bombparty_bot():
     game_gui = BombPartyGUI()
     game_gui.mainloop()
 
@@ -89,7 +89,7 @@ def main():
                             break
                     pass
 
-                round_ = driver.find_element(By.CLASS_NAME, 'round')  # this element is visible
+                round_ = driver.find_element(By.CLASS_NAME, 'round')
                 if round_.is_displayed():
                     pass
                 else:
@@ -107,4 +107,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    bombparty_bot()
