@@ -1,6 +1,5 @@
 from tkinter import StringVar, IntVar
 from customtkinter import CTk, CTkLabel, CTkEntry, CTkRadioButton, CTkButton
-import time
 import re
 from tkinter import messagebox
 
