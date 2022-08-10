@@ -68,7 +68,6 @@ def bombparty_bot():
             while True:  # Run until the game is over
                 self_turn = driver.find_element(By.CLASS_NAME, 'selfTurn')
 
-
                 # Check if it is bot's turn to play
                 if self_turn.is_displayed():
 
@@ -98,8 +97,6 @@ def bombparty_bot():
                     join_button = driver.find_element(By.CSS_SELECTOR, '.join button')
                     join_button.send_keys(Keys.ENTER)
                     break
-
-
 
         else:
             # print("Element not found")
